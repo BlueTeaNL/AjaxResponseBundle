@@ -1,0 +1,8 @@
+services:
+    bluetea_ajaxresponse.event_listener.ajax_response:
+        class: BlueTea\AjaxResponseBundle\EventListener\AjaxResponseListener
+        arguments:
+            - @session
+            - @jms_serializer
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

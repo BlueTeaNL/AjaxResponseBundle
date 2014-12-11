@@ -1,0 +1,18 @@
+{
+    "name": "BlueTea AjaxResponse",
+    "version": "1.0",
+    "authors": [
+        "Pim Widdershoven <p.widdershoven@bluetea.nl>"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "blockui": "*",
+        "pnotify": "~2.0"
+    }
+}
