@@ -67,6 +67,7 @@ or with assetic:
 ```twig
 {% javascripts combine=true
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
+    '@BlueTeaAjaxResponseBundle/Resources/public/vendor/jquery-ui/ui/minified/jquery-ui.min.js'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/blockui/jquery.blockUI.js'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/pnotify/pnotify.core.js'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/pnotify/pnotify.buttons.js'
@@ -85,6 +86,7 @@ or with assetic:
 {% endjavascripts %}
 
 {% stylesheets filter="cssrewrite"
+    '@BlueTeaAjaxResponseBundle/Resources/public/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/pnotify/pnotify.core.css'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/pnotify/pnotify.buttons.css'
     '@BlueTeaAjaxResponseBundle/Resources/public/vendor/pnotify/pnotify.history.css'
