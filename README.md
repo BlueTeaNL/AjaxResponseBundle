@@ -135,12 +135,8 @@ So, if you want to send a modal to the frontend your code should look like this:
 
 ```php
 return new AjaxResponse(
-    $this->renderView('HotfloSystemGroupBundle:Group/Ajax:show.html.twig',
-        array(
-            'children' => $children,
-            'collection' => $collection,
-            'type' => HotfloSystemGroupTypes::getTypeByClass($collection->getClass())
-        )
+    $this->renderView('AcmeDemoBundle:Example:show.html.twig',
+        $data
     ),
     AjaxResponse::TYPE_MODAL
 );
