@@ -37,8 +37,7 @@ class AjaxResponseListener
         // Get PHP serialized content - serialize()
         $content = $response->getContent();
         // Deserialize it
-        $data = $this->serializer->deserialize($content, 'array', 'json');
-
+        $data = unserialize($content);
 
         // Do nothing if the type is a redirect
         if ($data['type'] == AjaxResponse::TYPE_REDIRECT) {
@@ -51,12 +50,8 @@ class AjaxResponseListener
             $data['flashBag'] = $flashBags;
         }
 
-        $serializationContext = new SerializationContext();
-        $serializationContext->setSerializeNull(true);
-
         // Serialize the data with JMS serializer to JSON
-        $content = $this->serializer->serialize($data, 'json', $serializationContext);
-
+        $content = $this->serializer->serialize($data, 'json');
         // Set the content
         $response->setContent($content);
         // Set the response
