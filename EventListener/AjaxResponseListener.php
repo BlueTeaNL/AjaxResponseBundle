@@ -3,6 +3,7 @@
 namespace BlueTea\AjaxResponseBundle\EventListener;
 
 use BlueTea\AjaxResponseBundle\Response\AjaxResponse;
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -37,7 +38,8 @@ class AjaxResponseListener
         // Get PHP serialized content - serialize()
         $content = $response->getContent();
         // Deserialize it
-        $data = unserialize($content);
+        $data = $this->serializer->deserialize($content, 'array', 'json');
+
 
         // Do nothing if the type is a redirect
         if ($data['type'] == AjaxResponse::TYPE_REDIRECT) {
@@ -50,8 +52,12 @@ class AjaxResponseListener
             $data['flashBag'] = $flashBags;
         }
 
+        $serializationContext = new SerializationContext();
+        $serializationContext->setSerializeNull(true);
+
         // Serialize the data with JMS serializer to JSON
-        $content = $this->serializer->serialize($data, 'json');
+        $content = $this->serializer->serialize($data, 'json', $serializationContext);
+
         // Set the content
         $response->setContent($content);
         // Set the response
