@@ -50,9 +50,25 @@ class AjaxResponse extends Response
         // serialization context configured by the YAML files on the entities. If a new serialization context class
         // is initialized in this class we don't know what the settings are in the YAML files. We can't access these
         // configuration files because that would result in a massive performance degradation.
-        // INFO: This isn't a really nice solution but it's only possible to add a string to the content
-        parent::__construct(serialize($this->data), $status, $headers);
+        // The AjaxResponseListener will serialize the data property and set the content of the response
+        parent::__construct('', $status, $headers);
         // Set content type
         $this->headers->set('Content-Type', 'application/json');
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param array $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
     }
 }

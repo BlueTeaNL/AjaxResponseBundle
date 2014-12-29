@@ -34,10 +34,8 @@ class AjaxResponseListener
             return;
         }
 
-        // Get PHP serialized content - serialize()
-        $content = $response->getContent();
-        // Deserialize it
-        $data = unserialize($content);
+        // Get the data
+        $data = $response->getData();
 
         // Do nothing if the type is a redirect
         if ($data['type'] == AjaxResponse::TYPE_REDIRECT) {
