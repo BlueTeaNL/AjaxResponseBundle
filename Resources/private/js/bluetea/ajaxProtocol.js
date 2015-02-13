@@ -8,6 +8,7 @@ $(function() {
                 beforeSendCallback: function() { $(document).blockUi('blockUI'); },
                 readyCallback: function() { $(document).blockUi('unblockUI'); },
                 successCallback: function() {},
+                completeCallback: function() { },
                 failCallback: function(jqXHR, textStatus, errorThrown) {
                     if (jqXHR.responseJSON !== undefined) {
                         var data = jqXHR.responseJSON;
@@ -55,6 +56,7 @@ $(function() {
                     // Execute successCallback
                     options.successCallback(this._ajaxData);
                 }, this))
+                .complete(options.completeCallback)
                 .fail(options.failCallback)
                 .always(options.readyCallback);
         },
