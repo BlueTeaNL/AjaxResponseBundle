@@ -8,6 +8,7 @@ $(function() {
 
         // Private variables
         _isUiBlocked: false,
+        _blockCount: 0,
 
         /**
          * Block UI
@@ -41,14 +42,18 @@ $(function() {
                     overlayCSS:  { zIndex: 2000, backgroundColor: '#000', opacity: 0.9, cursor: 'wait' }
                 });
             }
+            this._blockCount++;
         },
 
         /**
          * Unblock the UI
          */
         unblockUI: function() {
-            this._isUiBlocked = false;
-            $.unblockUI();
+            this._blockCount--;
+            if (this._blockCount == 0) {
+                this._isUiBlocked = false;
+                $.unblockUI();
+            }
         },
 
         /**
