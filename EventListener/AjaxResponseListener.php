@@ -37,11 +37,6 @@ class AjaxResponseListener
         // Get the data
         $data = $response->getData();
 
-        // Do nothing if the type is a redirect
-        if ($data['type'] == AjaxResponse::TYPE_REDIRECT) {
-            return;
-        }
-
         // Check if there is a FlashBag set
         $flashBags = $this->session->getFlashBag()->all();
         if (!empty($flashBags)) {
