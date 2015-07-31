@@ -50,10 +50,41 @@ $(function() {
          */
         unblockUI: function() {
             this._blockCount--;
-            if (this._blockCount == 0) {
+            if (this._blockCount <= 0 ) {
                 this._isUiBlocked = false;
                 $.unblockUI();
+                this._blockCount = 0;
             }
+        },
+
+        blockElement: function(element, title, message, className) {
+            if (title == undefined) {
+                title = this.options.textBlockUiTitle;
+            }
+
+            if ( message == undefined) {
+                message = this.options.textBlockUiMessage;
+            }
+
+            var htmlMessage = $('<div></div>').addClass('wrapper').addClass(className)
+                    .append(
+                    $('<div></div>').addClass('pull-left fa fa-spinner fa-pulse fa-5x'),
+                    $('<div></div>').addClass('pull-left content').append(
+                        $('<p></p>').html(title).addClass('title'),
+                        $('<p></p>').html(message).addClass('message')
+                    )
+                )
+                ;
+
+            $(element).block({
+                message: htmlMessage,
+                css: { backgroundColor: 'transparent', color: '#fff', border:0, zIndex: 100, textAlign: 'left' },
+                overlayCSS:  { zIndex: 99, backgroundColor: '#000', opacity: 0.9, cursor: 'wait' }
+            });
+        },
+
+        unblockElement: function(element) {
+            $(element).unblock();
         },
 
         /**
