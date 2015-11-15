@@ -36,6 +36,26 @@ $(function() {
             this._ajaxData = null;
             // Merge options
             options = array_merge(this.options.defaults, options);
+            // Create ajaxOptions
+            var ajaxOptions = {};
+            $.each(options, function(index, value) {
+                switch(index) {
+                    case 'beforeSendCallback':
+                        ajaxOptions['beforeSend'] = value;
+                        break;
+                    case 'readyCallback':
+                        break;
+                    case 'successCallback':
+                        break;
+                    case 'completeCallback':
+                        break;
+                    case 'failCallback':
+                        break;
+                    default:
+                        ajaxOptions[index] = value;
+                        break;
+                }
+            });
             // Call the URL
             $.ajax({
                 url: options.url,
