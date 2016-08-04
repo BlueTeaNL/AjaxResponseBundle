@@ -5,6 +5,8 @@ $(function() {
                 url: null,
                 data: null,
                 type: 'POST',
+                processData: true,  
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 beforeSendCallback: function() { $(document).blockUi('blockUI'); },
                 readyCallback: function() { $(document).blockUi('unblockUI'); },
                 successCallback: function() {},
@@ -60,6 +62,8 @@ $(function() {
             $.ajax({
                 url: options.url,
                 type: options.type,
+                contentType: options.contentType,
+                processData: options.processData,
                 data: options.data,
                 beforeSend: options.beforeSendCallback
             })
