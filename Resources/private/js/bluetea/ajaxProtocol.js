@@ -93,6 +93,9 @@ $(function() {
                     this.createModal(data.content);
                     break;
                 case 'redirect':
+                    if('useHistory' in data.data && data.data.useHistory === true) {
+                        history.pushState({}, window.location.href);
+                    }
                     // Redirect to page
                     window.location.replace(data.content);
                     break;
