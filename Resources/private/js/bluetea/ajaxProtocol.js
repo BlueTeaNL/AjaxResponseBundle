@@ -93,8 +93,13 @@ $(function() {
                     this.createModal(data.content);
                     break;
                 case 'redirect':
-                    // Redirect to page
-                    window.location.replace(data.content);
+                    // Redirect to page, if useHistory is present allow the saving of
+                    // the current page into history. If not just replace the URL
+                    if('data' in data && 'useHistory' in data.data && data.data.useHistory === true) {
+                        window.location.href = data.content;
+                    } else {
+                        window.location.replace(data.content);
+                    }
                     break;
                 case 'event':
                     // Fire a custom event
